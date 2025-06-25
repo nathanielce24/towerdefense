@@ -1,8 +1,14 @@
-package io.github.some_example_name;
+package io.github.some_example_name.Enemies;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-abstract class Enemy extends Renderable{
+import io.github.some_example_name.MainGame.Game;
+import io.github.some_example_name.Projectiles.Projectile;
+import io.github.some_example_name.Rendering.Position;
+import io.github.some_example_name.Rendering.Renderable;
+import io.github.some_example_name.Towers.Tower;
+
+public abstract class Enemy extends Renderable{
     private static final String bloodTexturePath = "core\\src\\main\\java\\io\\github\\textures\\blood1.png";
 
     private float x, y, speed, toShootx, toShooty, toShootxOffset, toShootyOffset; //toShoot is the point where towers should aim their projectiles

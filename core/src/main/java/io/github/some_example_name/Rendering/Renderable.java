@@ -1,6 +1,6 @@
-package io.github.some_example_name;
+package io.github.some_example_name.Rendering;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-abstract class Renderable implements Comparable<Renderable>{
+public abstract class Renderable implements Comparable<Renderable>{
     private float x;
     private float y;
     private Sprite sprite;

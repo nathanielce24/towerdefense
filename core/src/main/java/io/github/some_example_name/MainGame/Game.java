@@ -1,10 +1,16 @@
-package io.github.some_example_name;
+package io.github.some_example_name.MainGame;
+import io.github.some_example_name.Controllers.*;
+import io.github.some_example_name.Enemies.*;
+import io.github.some_example_name.Projectiles.*;
+import io.github.some_example_name.Rendering.*;
+import io.github.some_example_name.Towers.*;
+import io.github.some_example_name.UI.*;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-class Game{
+public class Game{
     RenderList<Tower> towers;
     RenderList<Enemy> enemies;
     RenderList<Tower> towerGhosts;

@@ -1,7 +1,13 @@
-package io.github.some_example_name;
+package io.github.some_example_name.Projectiles;
+import io.github.some_example_name.Controllers.*;
+import io.github.some_example_name.Enemies.*;
+import io.github.some_example_name.MainGame.*;
+import io.github.some_example_name.Rendering.*;
+import io.github.some_example_name.Towers.*;
+import io.github.some_example_name.UI.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-abstract class Projectile{
+public abstract class Projectile{
     private float x, y, xStart, yStart, xTarget, yTarget; //TODO: replace with Position object
     private boolean alive;
     private int damage;

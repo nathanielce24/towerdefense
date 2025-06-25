@@ -1,8 +1,14 @@
-package io.github.some_example_name;
+package io.github.some_example_name.Towers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-abstract class Tower extends Renderable implements Cloneable{
+import io.github.some_example_name.Enemies.Enemy;
+import io.github.some_example_name.MainGame.Game;
+import io.github.some_example_name.Projectiles.ProjectileType;
+import io.github.some_example_name.Rendering.Position;
+import io.github.some_example_name.Rendering.Renderable;
+
+public abstract class Tower extends Renderable implements Cloneable{
     private float x, y, xShoot, yShoot, xShootOffset, yShootOffset, rotation, range; //TODO: Use Position object instead
     private Position position;
     private int health, maxHealth, cooldown, fireRate, cost;
@@ -75,9 +81,9 @@ abstract class Tower extends Renderable implements Cloneable{
     }
 
     public void searchForTarget(){
-        if(game.enemies==null) return;
+        if(game.getEnemies()==null) return;
         Enemy closest = null;
-        for(Renderable e: game.enemies){
+        for(Renderable e: game.getEnemies()){
             if(e==null) continue;
             if(closest==null || !closest.exists() ||
               (calcDist(e.getX(), e.getY(), getX(), getY()) < 

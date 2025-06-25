@@ -1,6 +1,9 @@
-package io.github.some_example_name;
-
-class LightningTower extends Tower{
+package io.github.some_example_name.Towers;
+import io.github.some_example_name.Enemies.Enemy;
+import io.github.some_example_name.MainGame.Game;
+import io.github.some_example_name.Projectiles.LightningBolt;
+import io.github.some_example_name.Projectiles.ProjectileType;
+public class LightningTower extends Tower{
     
     ProjectileType projectile = getProjectile();
     float xShoot = getxShoot();
@@ -11,7 +14,7 @@ class LightningTower extends Tower{
     private Enemy enemy = getEnemy();
 
     public LightningTower(float x, float y, Game game){
-        super(x, y, 18, 37, "core\\src\\main\\java\\io\\github\\textures\\lighttower.png", 100, 30, 150, 100, game);
+        super(x, y, 7, 37, "core\\src\\main\\java\\io\\github\\textures\\lighttower.png", 100, 30, 150, 100, game);
         getPosition().setXBoundOffset(8);
         getPosition().setYBoundOffset(11);
         power = 1;

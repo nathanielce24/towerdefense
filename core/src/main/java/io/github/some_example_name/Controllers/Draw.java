@@ -1,9 +1,9 @@
 
-package io.github.some_example_name;
+package io.github.some_example_name.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-class Draw{
+public class Draw{
 
      public static void thickLine(ShapeRenderer shapeRenderer, int thickness, float x1, float y1, float x2, float y2){
         for(int i = 0; i<thickness; i++){

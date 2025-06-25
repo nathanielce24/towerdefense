@@ -1,11 +1,11 @@
-package io.github.some_example_name;
+package io.github.some_example_name.Rendering;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-class RenderList<T extends Renderable> implements Iterable<T> {
+public class RenderList<T extends Renderable> implements Iterable<T> {
     private final ArrayList<T> objects;
 
     public RenderList() {

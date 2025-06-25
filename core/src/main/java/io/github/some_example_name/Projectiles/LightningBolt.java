@@ -1,9 +1,15 @@
-package io.github.some_example_name;
+package io.github.some_example_name.Projectiles;
+import io.github.some_example_name.Controllers.*;
+import io.github.some_example_name.Enemies.*;
+import io.github.some_example_name.MainGame.*;
+import io.github.some_example_name.Rendering.*;
+import io.github.some_example_name.Towers.*;
+import io.github.some_example_name.UI.*;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-class LightningBolt extends Projectile{
+public class LightningBolt extends Projectile{
     private static final int maxTime = 30;
     public static final Color ELECTRIC_BLUE = new Color(0.49f, 0.98f, 1f, 1f);
     private static final int DAMAGE = 1;

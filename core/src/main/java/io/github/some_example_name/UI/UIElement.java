@@ -1,4 +1,6 @@
-package io.github.some_example_name;
+package io.github.some_example_name.UI;
+import io.github.some_example_name.Rendering.Position;
+import io.github.some_example_name.Rendering.Renderable;
 abstract class UIElement extends Renderable{
     private Position position;
 

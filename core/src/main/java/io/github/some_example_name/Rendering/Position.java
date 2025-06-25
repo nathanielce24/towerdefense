@@ -1,7 +1,7 @@
-package io.github.some_example_name;
+package io.github.some_example_name.Rendering;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-class Position{
+public class Position{
     private float x, y;
     private float xCenter, yCenter;
     private float xCenterOffset, yCenterOffset;

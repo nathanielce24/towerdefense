@@ -1,6 +1,10 @@
-package io.github.some_example_name;
+package io.github.some_example_name.Towers;
+import io.github.some_example_name.Enemies.Enemy;
+import io.github.some_example_name.MainGame.Game;
+import io.github.some_example_name.Projectiles.Laserbeam;
+import io.github.some_example_name.Projectiles.ProjectileType;
 
-class LaserTurret extends Tower{
+public class LaserTurret extends Tower{
     private static final String texturePath = "core\\src\\main\\java\\io\\github\\textures\\laserturret.png";
 
     ProjectileType projectile = getProjectile();
@@ -12,7 +16,7 @@ class LaserTurret extends Tower{
     private Enemy enemy = getEnemy();
 
     public LaserTurret(float x, float y, Game game){
-        super(x, y, 16, 28, texturePath, 100, 30, 150, 100, game);
+        super(x, y, 12, 28, texturePath, 100, 30, 150, 100, game);
         getPosition().setXBoundOffset(20);
         getPosition().setYBoundOffset(8);
     }

@@ -1,5 +1,6 @@
-package io.github.some_example_name;
-class ProjectileType{
+package io.github.some_example_name.Projectiles;
+import io.github.some_example_name.MainGame.Game;
+public class ProjectileType{
     Game game;
     
     public ProjectileType(Game game){
