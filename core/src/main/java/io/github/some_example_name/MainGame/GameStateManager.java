@@ -1,7 +1,10 @@
 package io.github.some_example_name.MainGame;
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 import io.github.some_example_name.Controllers.Controller;
+import io.github.some_example_name.Enemies.Enemy;
 
 class GameStateManager{
     private static final int STARTING_MONEY = 10000;
@@ -13,6 +16,7 @@ class GameStateManager{
     private ArrayList<Level> levels;
     Controller controller;
     int currentLevelIndex;
+    private ShapeRenderer sr;
 
     private enum State {
         PLAYING,
@@ -23,23 +27,51 @@ class GameStateManager{
     private State state;
   
 
-    public GameStateManager(){
+    public GameStateManager(ShapeRenderer sr){
         this.money = STARTING_MONEY;
         this.health = STARTING_HEALTH;
         levels = new ArrayList<>();
         this.currentLevel = null;
         currentLevelIndex = 0;
+        state = State.PLAYING;
+        this.sr = sr;
     }
 
-
-    public void runLevel(int index, Game game){
-
-    }
-
-    public void runNextLevel(Game game){
-        if(levels.get(currentLevelIndex+1)!=null){
-            runLevel(++currentLevelIndex, game);
+    public void update(Game game){
+        switch (state){
+            case PLAYING:
+                game.updateEnemys();
+                game.updateTowers();
+                game.updateProjectiles(sr);
+                break;
         }
+
+    }
+
+
+    public boolean spawnNextEnemy(Game game){  //false if all enemies from all levels have been spawned
+        Enemy e = currentLevel.nextEnemy();
+        if(e!=null){
+            game.addEnemy(e);
+            return true;
+        }
+        else if(!isLastLevel()){
+            currentLevel = levels.get(++currentLevelIndex);
+            if (currentLevel.getCurrentWave().getCurrentEnemy()==null) return false;
+            else{game.addEnemy(currentLevel.getCurrentWave().getCurrentEnemy());}
+        }
+        return false;
+    }
+
+    public boolean isLastLevel(){
+        return currentLevelIndex>=levels.size()-1;
+    }
+
+    public Level getNextLevel(Game game){
+         if(levels.get(currentLevelIndex+1)!=null){
+            return(levels.get(currentLevelIndex+1));
+        }
+        return null;
     }
 
     public void gameOver(){

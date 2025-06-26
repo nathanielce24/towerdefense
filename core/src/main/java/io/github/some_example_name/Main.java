@@ -29,7 +29,7 @@ public class Main extends ApplicationAdapter {
         sr = new ShapeRenderer();
         
         //image = new Texture("libgdx.png");
-        game = new Game();
+        game = new Game(sr);
         c = new Controller(game); 
         game.setController(c);           
         LightningTower t = new LightningTower(80, 100, game);
@@ -51,16 +51,25 @@ public class Main extends ApplicationAdapter {
     @Override
     public void render() {
 
+        c.update();
+
+        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
+
+        batch.begin();
+        renderSprites(batch);
+        batch.end();
+
+        sr.begin(ShapeRenderer.ShapeType.Line); //TODO: allow for sprites to be drawn over shapes. Right now, shapes must be drawn on top.
+        game.update();
+        sr.end();
+        
+       
 
        
-        c.update();
-        
-        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
-        //game.getTowers().get(0).setPosition((float)Gdx.input.getX(), (float)Gdx.input.getY());
-        game.updateEnemys();
-        game.updateTowers();
-        batch.begin();
-        batch.draw(background, 0, 0);
+    }
+
+    public void renderSprites(SpriteBatch batch){
+         batch.draw(background, 0, 0);
         for(Sprite s: game.getSprites()){  //TODO: add null checks
             s.draw(batch);
         }
@@ -79,14 +88,6 @@ public class Main extends ApplicationAdapter {
                 t.getSprite().draw(batch);
             }
         }
-
-        batch.end();
-        
-        sr.begin(ShapeRenderer.ShapeType.Line);
-        game.updateProjectiles(sr);
-        sr.end();
-
-       
     }
 
     @Override

@@ -11,7 +11,7 @@ import io.github.some_example_name.Towers.Tower;
 public abstract class Enemy extends Renderable{
     private static final String bloodTexturePath = "core\\src\\main\\java\\io\\github\\textures\\blood1.png";
 
-    private float x, y, speed, toShootx, toShooty, toShootxOffset, toShootyOffset; //toShoot is the point where towers should aim their projectiles
+    private float x, y, xSpawn, ySpawn, speed, toShootx, toShooty, toShootxOffset, toShootyOffset; //toShoot is the point where towers should aim their projectiles
     private int health, damage;
     private Tower target; 
     private Sprite sprite;
@@ -32,6 +32,8 @@ public abstract class Enemy extends Renderable{
                  String texturePath, Game game){
         this.x = x;
         this.y = y;
+        this.xSpawn = 0;
+        this.ySpawn = 0;
         this.toShootxOffset = toShootxOffset;
         this.toShootyOffset = toShootyOffset;
         this.toShootx = x+toShootxOffset;
@@ -101,6 +103,8 @@ public abstract class Enemy extends Renderable{
 
     public float getX(){ return x; }
     public float getY(){ return y; }
+    public float getXSpawn() {return xSpawn;}
+    public float getYSpawn() {return ySpawn;}
     public float getSpeed(){ return speed; }
     public int getHp(){ return this.health; }
     public Sprite getSprite(){ return this.sprite; }
@@ -120,6 +124,8 @@ public abstract class Enemy extends Renderable{
         position.setY(y);
         sprite.setY(y);
     }
+    public void setXSpawn(float x){ this.xSpawn = x;}
+    public void setYSpawn(float x){ this.ySpawn = y;}
     public void subtractHp(int hp){ this.health -= hp; }
     public void addHp(int hp){ this.health += hp; }
     public void setTarget(Tower tower){ this.target = tower; }

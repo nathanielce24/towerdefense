@@ -22,12 +22,17 @@ public class Game{
     Controller controller; 
     int money;
 
+    ShapeRenderer sr;
+
     private EnemyManager enemyManager;
     private GameStateManager gameManager;
     private TowerManager towerManager;
     private ProjectileManager projectileManager;
     
-    public Game(){
+    public Game(ShapeRenderer sr){
+
+        this.sr = sr;
+
         towers = new RenderList<>();
         enemies = new RenderList<>();
         towerGhosts = new RenderList<>();
@@ -35,11 +40,15 @@ public class Game{
         sprites = new ArrayList<>();
 
         enemyManager = new EnemyManager();
-        gameManager = new GameStateManager();
+        gameManager = new GameStateManager(sr);
         towerManager = new TowerManager();
         projectileManager = new ProjectileManager();
 
         money = 10000;
+    }
+
+    public void update(){
+        gameManager.update(this);
     }
 
     public void updateTowers(){
