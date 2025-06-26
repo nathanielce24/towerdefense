@@ -1,13 +1,11 @@
 package io.github.some_example_name.Projectiles;
-import io.github.some_example_name.Controllers.*;
-import io.github.some_example_name.Enemies.*;
-import io.github.some_example_name.MainGame.*;
-import io.github.some_example_name.Rendering.*;
-import io.github.some_example_name.Towers.*;
-import io.github.some_example_name.UI.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public abstract class Projectile{
+import io.github.some_example_name.Enemies.Enemy;
+import io.github.some_example_name.Rendering.Renderable;
+import io.github.some_example_name.Towers.Tower;
+
+public abstract class Projectile extends Renderable{
     private float x, y, xStart, yStart, xTarget, yTarget; //TODO: replace with Position object
     private boolean alive;
     private int damage;
@@ -27,6 +25,7 @@ public abstract class Projectile{
         this.y = yStart;
         alive = true;
         hitShader = new float[]{1f, 0.5f, 0.5f, 1f};
+        
     }
 
     public Projectile(Tower tower, Enemy enemy){

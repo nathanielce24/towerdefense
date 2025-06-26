@@ -1,14 +1,14 @@
 package io.github.some_example_name.MainGame;
-import io.github.some_example_name.Controllers.*;
-import io.github.some_example_name.Enemies.*;
-import io.github.some_example_name.Projectiles.*;
-import io.github.some_example_name.Rendering.*;
-import io.github.some_example_name.Towers.*;
-import io.github.some_example_name.UI.*;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
+import io.github.some_example_name.Controllers.Controller;
+import io.github.some_example_name.Enemies.Enemy;
+import io.github.some_example_name.Projectiles.Projectile;
+import io.github.some_example_name.Rendering.RenderList;
+import io.github.some_example_name.Towers.Tower;
 
 public class Game{
     RenderList<Tower> towers;
@@ -16,8 +16,16 @@ public class Game{
     RenderList<Tower> towerGhosts;
     ArrayList<Projectile> projectiles;
     ArrayList<Sprite> sprites;
+
+    ArrayList<Level> Levels;
+
     Controller controller; 
     int money;
+
+    private EnemyManager enemyManager;
+    private GameStateManager gameManager;
+    private TowerManager towerManager;
+    private ProjectileManager projectileManager;
     
     public Game(){
         towers = new RenderList<>();
@@ -26,89 +34,66 @@ public class Game{
         projectiles = new ArrayList<>();
         sprites = new ArrayList<>();
 
+        enemyManager = new EnemyManager();
+        gameManager = new GameStateManager();
+        towerManager = new TowerManager();
+        projectileManager = new ProjectileManager();
+
         money = 10000;
     }
 
     public void updateTowers(){
-       for(Tower t: towers){
-            t.update();
-       }
-    }
-
-    public void updateEnemys(){
-        for(Enemy e: enemies){
-            if(e==null) continue;
-            e.update();
-            if(!e.exists()){
-                enemies.set(enemies.indexOf(e), null);
-            }
-        }
-    }
-
-    public void updateProjectiles(ShapeRenderer sr){
-        for(Projectile p: projectiles){
-            p.update(sr);
-        }
-    }
-
-    public void updateTowerGhosts(){  //TODO: Give GhostTowers their own class
-       for(Tower t: towerGhosts){
-            t.setX(controller.getXMouse());
-            t.setY(controller.getYMouse());
-            if(t.collidingWithOtherTower()) t.getSprite().setColor(0.9f,0.3f,0.3f, 1);
-            else t.getSprite().setColor(1f,1f,1f,1f);
-            t.getSprite().setAlpha(0.7f);
-       }
+       towerManager.update();
     }
 
     public boolean tryPlacingTower(Tower tower){
-        for(Tower t: towers){
-            if(t.getPosition().isColliding(tower.getPosition())){
-                System.out.println("Overlapping");
-                return false;
-            }
-        }
-        if(money>=tower.getCost()){
-            towers.add(tower);
-            money-=tower.getCost();
-        }
-        else{
-            System.out.println("not enough money");
-            return true;
-        }
-        return true;
+        return towerManager.TryPlacingTower(tower, gameManager);
     }
 
+    public void updateEnemys(){
+        enemyManager.update();
+    }
+
+    public void updateProjectiles(ShapeRenderer sr){
+        projectileManager.update(sr);
+    }
+
+
     public Controller getController(){ return controller;}
-    public void setController(Controller controller){ this.controller = controller;}
+    public void setController(Controller controller){ 
+        this.controller = controller;
+        enemyManager.setController(controller);
+        towerManager.setController(controller);
+        gameManager.setController(controller);
+        projectileManager.setController(controller);
+        }
 
-
-    public ArrayList<Projectile> getProjectiles(){
-        return projectiles;
+    public ArrayList<Projectile> getProjectiles(){  //TODO: seperate drawn and sprite projectiles
+        return projectileManager.getDrawnProjectiles();
     }
 
     public RenderList<Tower> getTowers(){
-        return towers;
+        return towerManager.getTowers();
     }
 
     public RenderList<Tower> getTowerGhosts(){
-        return towerGhosts;
+        return towerManager.getTowerGhosts();
     }
 
     public RenderList<Enemy> getEnemies(){
-        return enemies; 
+        return enemyManager.getEnemies(); 
     }
 
     public void addTower(Tower tower){
-        towers.add(tower);
+        towerManager.addTower(tower);
     }
 
     public void addEnemy(Enemy enemy){
-        enemies.add(enemy);
+        enemyManager.addEnemy(enemy);
     }
 
     public void addProjectile(Projectile projectile){
-        projectiles.add(projectile);
+            projectileManager.addProjectile(projectile);
     }
 
     public void addSprite(Sprite sprite){

@@ -1,16 +1,16 @@
 package io.github.some_example_name.Controllers;
-import io.github.some_example_name.Enemies.*;
-import io.github.some_example_name.MainGame.*;
-import io.github.some_example_name.Projectiles.*;
-import io.github.some_example_name.Rendering.*;
-import io.github.some_example_name.Towers.*;
-import io.github.some_example_name.UI.*;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
+
+import io.github.some_example_name.MainGame.Game;
+import io.github.some_example_name.Towers.LaserTurret;
+import io.github.some_example_name.Towers.LightningTower;
+import io.github.some_example_name.Towers.Tower;
+
 
 public class Controller{
     Game game;
@@ -86,7 +86,7 @@ public class Controller{
 
     private void placeing(Tower tower){
         if(game.getTowerGhosts().isEmpty() ||
-           !game.getTowerGhosts().get(0).getClass().equals(tower.getClass())){  //TODO: Move this logic to RenderList
+           !game.getTowerGhosts().get(0).getClass().equals(tower.getClass())){  //TODO?: Move this logic to RenderList
             game.getTowerGhosts().clear();
             Tower t2 = tower.clone();
             game.getTowerGhosts().add(t2);

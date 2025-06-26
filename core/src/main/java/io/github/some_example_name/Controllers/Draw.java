@@ -12,22 +12,16 @@ public class Draw{
         }
     }
 
-    public static void jaggedLine(ShapeRenderer shapeRenderer, float x1, float y1, float x2, float y2, Color color, float jaggedness){                              
+    public static void jaggedLine(ShapeRenderer shapeRenderer, float x1, float y1, float x2, float y2, Color color, float jaggedness){  //TODO: Use random deviation of angle instead of slope                            
         shapeRenderer.setColor(color);
         float slope;
-        
         if(Math.abs(x1-x2)<1){
             slope = 0.1f;
         }
-        
         slope = ((y2-y1) / (x2-x1));
-        
         float currx = x1;
         float curry = y1;
-        float rand;
-        float dist;
-        float newx;
-        float newy;
+        float rand, dist, newx, newy;
         int count = 0;
         boolean fromRight = x2 > x1;
         float direction = 1f;

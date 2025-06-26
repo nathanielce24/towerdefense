@@ -1,13 +1,10 @@
 package io.github.some_example_name.Projectiles;
-import io.github.some_example_name.Controllers.*;
-import io.github.some_example_name.Enemies.*;
-import io.github.some_example_name.MainGame.*;
-import io.github.some_example_name.Rendering.*;
-import io.github.some_example_name.Towers.*;
-import io.github.some_example_name.UI.*;
-
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
+import io.github.some_example_name.Controllers.Draw;
+import io.github.some_example_name.Enemies.Enemy;
+import io.github.some_example_name.Towers.Tower;
 
 public class LightningBolt extends Projectile{
     private static final int maxTime = 30;
@@ -42,6 +39,10 @@ public class LightningBolt extends Projectile{
            
             shapeRenderer.setColor(ELECTRIC_BLUE);
             drawBolt(shapeRenderer);
+    }
+
+    public void update(){
+        return;
     }
 
     public void superUpdate(ShapeRenderer shapeRenderer){

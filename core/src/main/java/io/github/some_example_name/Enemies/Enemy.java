@@ -108,6 +108,7 @@ public abstract class Enemy extends Renderable{
     public int getDamage(){ return this.damage; }
     public float getToShootx(){ return toShootx; }
     public float getToShooty(){ return toShooty; }
+    public static String getBloodTexturePath() {return bloodTexturePath; }
 
     public void setX(float x){
         this.x = x; 

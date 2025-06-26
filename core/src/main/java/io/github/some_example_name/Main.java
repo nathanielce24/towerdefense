@@ -1,17 +1,17 @@
 package io.github.some_example_name;
-import io.github.some_example_name.Controllers.*;
-import io.github.some_example_name.Enemies.*;
-import io.github.some_example_name.Projectiles.*;
-import io.github.some_example_name.Rendering.*;
-import io.github.some_example_name.Towers.*;
-import io.github.some_example_name.UI.*;
-import io.github.some_example_name.MainGame.*;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
+
+import io.github.some_example_name.Controllers.Controller;
+import io.github.some_example_name.Enemies.Enemy;
+import io.github.some_example_name.Enemies.Journalist;
+import io.github.some_example_name.MainGame.Game;
+import io.github.some_example_name.Towers.LightningTower;
+import io.github.some_example_name.Towers.Tower;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
@@ -59,7 +59,6 @@ public class Main extends ApplicationAdapter {
         //game.getTowers().get(0).setPosition((float)Gdx.input.getX(), (float)Gdx.input.getY());
         game.updateEnemys();
         game.updateTowers();
-        game.updateTowerGhosts(); 
         batch.begin();
         batch.draw(background, 0, 0);
         for(Sprite s: game.getSprites()){  //TODO: add null checks
