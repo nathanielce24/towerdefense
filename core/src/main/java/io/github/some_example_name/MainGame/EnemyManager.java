@@ -19,6 +19,7 @@ class EnemyManager{
                 enemies.set(enemies.indexOf(e), null);
             }
         }
+        enemies.removeNulls(); //TOFO: fucks performance when a lot of enemies are on screen. remove enemies immediatley when they die.
     }
 
     public void addEnemy(Enemy enemy){ enemies.add(enemy);}

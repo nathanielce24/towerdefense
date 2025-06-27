@@ -1,5 +1,7 @@
 package io.github.some_example_name;
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,6 +14,7 @@ import io.github.some_example_name.Enemies.Journalist;
 import io.github.some_example_name.MainGame.Game;
 import io.github.some_example_name.Towers.LightningTower;
 import io.github.some_example_name.Towers.Tower;
+
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
@@ -52,6 +55,10 @@ public class Main extends ApplicationAdapter {
     public void render() {
 
         c.update();
+
+        if(Gdx.input.isKeyPressed(Keys.E)){
+             game.addEnemy(new Journalist(500,(float)Math.random()*500, game));
+        }
 
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
 

@@ -58,6 +58,14 @@ public class RenderList<T extends Renderable> implements Iterable<T> {
         return new ArrayList<>(objects);
     }
 
+    public void removeNulls(){
+        for (int i = objects.size() - 1; i >= 0; i--) {
+            if (objects.get(i) == null) {
+                objects.remove(i);
+            }
+        }
+    }
+
     @Override
     public Iterator<T> iterator() {
         return objects.iterator();

@@ -26,6 +26,7 @@ class TowerManager{
        for(Tower t: towers){
             t.update();
        }
+       towers.removeNulls(); //FIX: horribly fucking inefficient
     }
 
     public void updateTowerGhosts(){  
@@ -36,6 +37,7 @@ class TowerManager{
             else t.getSprite().setColor(1f,1f,1f,1f);
             t.getSprite().setAlpha(0.7f);
        }
+       towerGhosts.removeNulls();
     }
 
     public boolean TryPlacingTower(Tower tower, GameStateManager gameStateManager){

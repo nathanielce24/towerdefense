@@ -20,6 +20,7 @@ class ProjectileManager{
     public void update(ShapeRenderer sr){
         updateDrawnProjectiles(sr);
         updateSpriteProjectiles();
+        spriteProjectiles.removeNulls();
     }
 
     public void updateDrawnProjectiles(ShapeRenderer sr){
